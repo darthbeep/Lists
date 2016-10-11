@@ -77,11 +77,12 @@ struct node * insert_front(struct node * head, int n) {
 }
 
 struct node * free_list(struct node * head) {
-  struct node *orig = head;
+  struct node *orig = (struct node *) malloc(sizeof(struct node));
+  memcpy(orig, head, (struct node *) malloc(sizeof(struct node)));
   while (head != 0) {
     struct node *copy = head;
     head = head->next;
     free(copy);
   }
-  return 0;
+  return orig;
 }
